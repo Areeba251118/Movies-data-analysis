@@ -1,0 +1,31 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("movies.csv")
+print(df.head())
+print("\nShape of dataset:")
+print(df.shape)
+
+print("\nColumn names:")
+print(df.columns)
+
+print("\nBasic information:")
+print(df.info())
+
+print("\nStatistical summary:")
+print(df.describe())
+top_movies = df.sort_values(by="rating", ascending=False).head(5)
+print("\nTop 5 Highest Rated Movies:")
+print(top_movies)
+avg_rating_genre = df.groupby("genre")["rating"].mean()
+print("\nAverage Rating by Genre:")
+print(avg_rating_genre)
+avg_rating_genre.plot(kind="bar")
+plt.title("Average Rating by Genre")
+plt.xlabel("Genre")
+plt.ylabel("Average Rating")
+plt.show()
+plt.scatter(df["votes"], df["rating"])
+plt.title("Votes vs Rating")
+plt.xlabel("Votes")
+plt.ylabel("Rating")
+plt.show()
